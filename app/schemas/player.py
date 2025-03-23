@@ -1,32 +1,42 @@
-from pydantic import BaseModel
-from typing import List,Optional
+# app/schemas/player.py
+
+from pydantic import BaseModel, EmailStr
+from typing import Optional
+
 
 class PlayerCreate(BaseModel):
     id:int
-    name:str
-    age:int
-    role:str
-    batting_style:str
-    bowling_style:str
-    phone:int
-    address:str
-      
-    class config:
-       from_attributes = True  
-       
+    name: str
+    age: int
+    role: Optional[str] = None
+    batting_style: Optional[str] = None
+    bowling_style: Optional[str] = None
+    email: EmailStr
+    phone: str
+    address: str
+
+
+class PlayerUpdate(BaseModel):
+    name: Optional[str] = None
+    age: Optional[int] = None
+    role: Optional[str] = None
+    batting_style: Optional[str] = None
+    bowling_style: Optional[str] = None
+    email: Optional[EmailStr] = None
+    phone: Optional[str] = None
+    address: Optional[str] = None
+
+
 class PlayerResponse(BaseModel):
-    id:int
-    name:str
-    role:str
-    address:str
-    
-    class config:
+    id: int
+    name: str
+    age: int
+    role: Optional[str] = None
+    batting_style: Optional[str] = None
+    bowling_style: Optional[str] = None
+    email: Optional[EmailStr]=None
+    phone: str
+    address: str
+
+    class Config:
         orm_mode = True
-
-
-class PlayerUpdate:
-    name:Optional[str]=None
-    age:Optional[int]=None
-    role:Optional[str]=None
-    phone:Optional[int]=None
-    address:Optional[int]=None           
