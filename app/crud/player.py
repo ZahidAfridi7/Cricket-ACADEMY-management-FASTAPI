@@ -22,7 +22,7 @@ async def create_new_player(db:AsyncSession,player:PlayerCreate):
 
 async def get_all_players(db:AsyncSession,skip:int=0):
     result = db.execute(select(Player).offset(skip))
-    return result.scalar().all()
+    return result.scalars().all()
 
 async def get_player_by_id(db:AsyncSession,player_id:int):
     result = db.execute(select(Player).where(Player.id==player_id))
